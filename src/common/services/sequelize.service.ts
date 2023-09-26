@@ -7,7 +7,7 @@ import {
     MYSQL_PORT,
     MYSQL_USER,
     MYSQL_PASSWORD,
-    MYSQL_DB,
+    MYSQL_DATABASE,
 } from '../constants/env.constants';
 
 const log: debug.IDebugger = debug('app:sequelize-service');
@@ -20,7 +20,7 @@ class SequelizeService {
         port: MYSQL_PORT,
         username: MYSQL_USER,
         password: MYSQL_PASSWORD,
-        database: MYSQL_DB,
+        database: MYSQL_DATABASE,
         dialect: 'mysql' as Dialect,
         logging: false,
     };
