@@ -4,12 +4,12 @@ import { body } from 'express-validator';
 import { CommonRoutesConfig } from '../common/common.routes.config';
 import BodyValidationMiddleware from '../common/middleware/body.validation.middleware';
 
-const log: debug.IDebugger = debug('app:customers-routes');
+const log: debug.IDebugger = debug('app:transaction-history-routes');
 
 
-export class CustomersRoutes extends CommonRoutesConfig {
+export class TransactionHistory extends CommonRoutesConfig {
 	constructor(app: express.Application) {
-		super(app, 'CustomersRoutes');
+		super(app, 'TransactionHistoryRoutes');
 	}
 
     configureRoutes(){
