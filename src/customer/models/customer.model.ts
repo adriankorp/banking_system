@@ -1,19 +1,10 @@
-import {
-    Model,
-    DataTypes,
-    CreationOptional,
-    InferAttributes,
-    InferCreationAttributes,
-} from 'sequelize';
+import { Model, DataTypes, CreationOptional, InferAttributes, InferCreationAttributes } from 'sequelize';
 import sequelizeService from '../../common/services/sequelize.service';
 
 const sequelize = sequelizeService.getSequelize();
 
 export interface CustomerAttributes
-    extends Model<
-    InferAttributes<CustomerAttributes>,
-    InferCreationAttributes<CustomerAttributes>
-    > {
+    extends Model<InferAttributes<CustomerAttributes>, InferCreationAttributes<CustomerAttributes>> {
     id: CreationOptional<string>;
     email: string;
     password: string;
@@ -46,14 +37,23 @@ export const Customer = sequelize.define<CustomerAttributes>(
         firstName: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [1, 50],
+            },
         },
         lastName: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [1, 100],
+            },
         },
         address: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [5, 100],
+            },
         },
         phone: {
             type: DataTypes.STRING,

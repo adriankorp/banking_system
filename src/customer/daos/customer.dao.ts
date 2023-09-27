@@ -44,12 +44,18 @@ class CustomerDao {
     async updateById(
         customerId: string,
         customerFields: PutCustomerDto | PatchCustomerDto,
-    ): Promise<CustomerAttributes> {
+    ): Promise<CustomerAttributes | null> {
         const customer = await this.Customer.update(customerFields, {
             where: { id: customerId },
-            returning: true,
         });
-        return customer[1][0];
+
+        if (!customer[0]) {
+            return null;
+        }
+
+        const updatedCustomer = await this.getById(customerId);
+
+        return updatedCustomer;
     }
     async deleteById(customerId: string): Promise<boolean> {
         const customer = await this.Customer.destroy({
