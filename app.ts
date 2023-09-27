@@ -12,7 +12,8 @@ import { API_PORT } from './src/common/constants/env.constants';
 import { STATUS } from './src/common/constants/response.constants';
 
 import { CommonRoutesConfig } from './src/common/common.routes.config';
-
+import { CustomersRoutes } from './src/customer/customer.routes.config';
+import errorHandlerMiddleware from './src/common/middleware/error.handler.middleware';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -47,11 +48,15 @@ if (!process.env.DEBUG) {
 
 app.use(expressWinston.logger(loggerOptions));
 
+routes.push(new CustomersRoutes(app));
 
 const runningMessage = `Server is listening on port ${API_PORT}`;
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.status(STATUS.OK).send(runningMessage);
 });
+
+app.use(errorHandlerMiddleware.handleError);
+app.use(errorHandlerMiddleware.invalidPath);
 
 export default server.listen(API_PORT, () => {
     routes.forEach((route: CommonRoutesConfig) => {
@@ -59,4 +64,3 @@ export default server.listen(API_PORT, () => {
     });
     console.log(runningMessage);
 });
-
