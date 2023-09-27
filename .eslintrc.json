@@ -17,6 +17,7 @@
         "linebreak-style": 0,
         "class-methods-use-this": "off",
         "indent": ["error", 4],
-        "@typescript-eslint/indent": ["error", 4]
+        "@typescript-eslint/indent": ["error", 4],
+        "object-curly-newline": 0
     }
 }
