@@ -15,10 +15,11 @@
     "test-debug:path": "export DEBUG=* && npm run test:path",
     "test:path": "mocha -r ts-node/register --unhandled-rejections=strict ",
     "prettier": "prettier --write ."
-},
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "debug": "^4.3.4",
     "dotenv": "^16.0.3",
@@ -32,8 +33,8 @@
     "sequelize": "^6.29.3",
     "uuid": "^9.0.0",
     "winston": "^3.8.2"
-},
-"devDependencies": {
+  },
+  "devDependencies": {
     "@types/chai": "^4.3.4",
     "@types/cors": "^2.8.13",
     "@types/debug": "^4.1.7",
@@ -59,5 +60,5 @@
     "ts-node": "^10.9.1",
     "tslint": "^6.1.3",
     "typescript": "^5.0.2"
-}
+  }
 }
