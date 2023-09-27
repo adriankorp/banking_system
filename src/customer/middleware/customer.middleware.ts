@@ -15,7 +15,7 @@ class CustomerMiddleware {
     }
 
     async validateCustomerExist(req: Request, res: Response, next: NextFunction) {
-        const customer = await customerService.readById(res.locals.userId);
+        const customer = await customerService.readById(res.locals.jwt.id);
         if (customer) {
             next();
         } else {
