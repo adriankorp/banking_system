@@ -17,7 +17,6 @@ export class CustomersRoutes extends CommonRoutesConfig {
             .route('/customer')
             .get(jwtMiddleware.validateJwt, customerMiddleware.validateCustomerExist, customerController.getById)
             .post(
-                BodyValidationMiddleware.verifyBodyIsJSON,
                 body('email').isEmail(),
                 body('password').isStrongPassword(),
                 body('firstName').isString(),
@@ -29,7 +28,6 @@ export class CustomersRoutes extends CommonRoutesConfig {
                 customerController.create,
             )
             .put(
-                BodyValidationMiddleware.verifyBodyIsJSON,
                 body('email').isEmail(),
                 body('password').isStrongPassword(),
                 body('firstName').isString(),
@@ -43,7 +41,6 @@ export class CustomersRoutes extends CommonRoutesConfig {
                 customerController.putById,
             )
             .patch(
-                BodyValidationMiddleware.verifyBodyIsJSON,
                 body('email')
                     .optional()
                     .isEmail()
