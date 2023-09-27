@@ -46,7 +46,10 @@ class CustomerController {
             phone,
             password: hashedPassword,
         });
-        res.status(STATUS.OK).send(customer);
+
+        res.status(STATUS.OK).send({
+            message: 'Customer updated',
+        });
     }
 
     async patchById(req: Request, res: Response, next: NextFunction) {
@@ -61,12 +64,16 @@ class CustomerController {
             phone,
             password: hashedPassword,
         });
-        res.status(STATUS.OK).send(customer);
+        res.status(STATUS.OK).send({
+            message: 'Customer updated',
+        });
     }
 
     async deleteById(req: Request, res: Response, next: NextFunction) {
         const customer = await customerService.deleteById(res.locals.jwt.id);
-        res.status(STATUS.OK).send(customer);
+        res.status(STATUS.OK).send({
+            message: 'Customer deleted',
+        });
     }
 }
 

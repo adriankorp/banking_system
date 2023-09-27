@@ -28,7 +28,7 @@ class CustomerService implements CRUD {
     async patchById(
         id: string,
         resource: PatchCustomerDto,
-    ): Promise<CustomerAttributes[]> {
+    ): Promise<CustomerAttributes> {
         return customerDao.updateById(id, resource);
     }
 
@@ -39,7 +39,7 @@ class CustomerService implements CRUD {
     async putById(
         id: string,
         resource: PutCustomerDto,
-    ): Promise<CustomerAttributes[]> {
+    ): Promise<CustomerAttributes> {
         return customerDao.updateById(id, resource);
     }
 
