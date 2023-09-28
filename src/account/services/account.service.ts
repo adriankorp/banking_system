@@ -16,6 +16,10 @@ class AccountService {
         return accountDao.add(resource);
     }
 
+    async readByAccountNumber(accountNumber: string): Promise<AccountAttributes | null> {
+        return accountDao.getByAccountNumber(accountNumber);
+    }
+
     async patchByCustomerId(customerId: string, resource: PatchAccountDto): Promise<AccountAttributes | null> {
         return accountDao.updateByCustomerId(customerId, resource);
     }
