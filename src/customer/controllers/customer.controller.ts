@@ -4,6 +4,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { STATUS } from '../../common/constants/response.constants';
 import customerService from '../services/customer.service';
+import accountService from '../../account/services/account.service';
 
 const log: debug.IDebugger = debug('app:customer-controller');
 
@@ -24,6 +25,11 @@ class CustomerController {
             phone,
             password: hashedPassword,
         });
+
+        const account = await accountService.create({
+            customerId: customer.id,
+        });
+
         res.status(STATUS.CREATED).send({
             message: 'Customer created',
         });
@@ -31,6 +37,7 @@ class CustomerController {
 
     async getById(req: Request, res: Response, next: NextFunction) {
         const customer = await customerService.readById(res.locals.jwt.id);
+        const customerAccount = await accountService.readByCustomerId(res.locals.jwt.id);
 
         res.status(STATUS.OK).send({
             firstName: customer?.firstName,
@@ -38,6 +45,10 @@ class CustomerController {
             email: customer?.email,
             address: customer?.address,
             phone: customer?.phone,
+            account: {
+                accountNumber: customerAccount?.accountNumber,
+                balance: customerAccount?.balance,
+            },
         });
     }
 
