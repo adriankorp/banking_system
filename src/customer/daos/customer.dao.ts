@@ -1,13 +1,10 @@
 import debug from 'debug';
-import sequelizeService from '../../common/services/sequelize.service';
 import { CreateCustomerDto } from '../dtos/create.customer.dto';
 import Customer, { CustomerAttributes } from '../models/customer.model';
 import { PutCustomerDto } from '../dtos/put.customer.dto';
 import { PatchCustomerDto } from '../dtos/patch.customer.dto';
 
 const log: debug.IDebugger = debug('app:customer-dao');
-
-const sequelize = sequelizeService.getSequelize();
 
 class CustomerDao {
     private Customer = Customer;

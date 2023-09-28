@@ -10,7 +10,7 @@ import transactionController from './controllers/transaction.controller';
 
 const log: debug.IDebugger = debug('app:transaction-routes');
 
-export class Transaction extends CommonRoutesConfig {
+export class TransactionRoutes extends CommonRoutesConfig {
     constructor(app: express.Application) {
         super(app, 'TransactionRoutes');
     }
