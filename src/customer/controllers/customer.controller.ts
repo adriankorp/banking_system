@@ -24,14 +24,21 @@ class CustomerController {
             phone,
             password: hashedPassword,
         });
-        res.status(STATUS.OK).send({
+        res.status(STATUS.CREATED).send({
             message: 'Customer created',
         });
     }
 
     async getById(req: Request, res: Response, next: NextFunction) {
         const customer = await customerService.readById(res.locals.jwt.id);
-        res.status(STATUS.OK).send(customer);
+
+        res.status(STATUS.OK).send({
+            firstName: customer?.firstName,
+            lastName: customer?.lastName,
+            email: customer?.email,
+            address: customer?.address,
+            phone: customer?.phone,
+        });
     }
 
     async putById(req: Request, res: Response, next: NextFunction) {
@@ -54,8 +61,12 @@ class CustomerController {
 
     async patchById(req: Request, res: Response, next: NextFunction) {
         const { email, firstName, lastName, address, phone, password } = req.body;
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        let hashedPassword;
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            hashedPassword = await bcrypt.hash(password, salt);
+        }
+
         const customer = await customerService.patchById(res.locals.jwt.id, {
             email,
             firstName,
