@@ -11,9 +11,10 @@ import { CreateCustomerDto } from '../../../customer/dtos/create.customer.dto';
 
     describe('Customer Middleware', () => {
         let customerBefore: CustomerAttributes;
+
         before(async () => {
             const customerBeforeParams: CreateCustomerDto = {
-                email: 'beforeCustomer@example.com',
+                email: 'beforeMiddleware@example.com',
                 password: '123456789',
                 firstName: 'beforeCustomer',
                 lastName: 'beforeCustomer',
