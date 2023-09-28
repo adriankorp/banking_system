@@ -1,4 +1,5 @@
 import debug from 'debug';
+import { Op } from 'sequelize';
 import Transaction, { TransactionAttributes } from '../models/transaction.model';
 import { CreateTransactionDto } from '../dtos/create.transaction.dto';
 
@@ -26,6 +27,17 @@ class TransactionDao {
         const offset = page * limit;
         return this.Transaction.findAll({
             where: { customerId },
+            limit,
+            offset,
+        });
+    }
+
+    async getAllByAccountNumber(accountNumber: string, limit = 25, page = 0): Promise<TransactionAttributes[]> {
+        const offset = page * limit;
+        return this.Transaction.findAll({
+            where: {
+                [Op.or]: [{ fromAccount: accountNumber }, { toAccount: accountNumber }],
+            },
             limit,
             offset,
         });

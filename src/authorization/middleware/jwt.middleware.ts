@@ -16,7 +16,6 @@ class JwtMiddleware {
 
                 next();
             } catch (error) {
-                console.log(error);
                 res.status(STATUS.UNAUTHORIZED).send();
             }
         } else {

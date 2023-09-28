@@ -55,7 +55,7 @@ class TransactionController {
     async list(req: Request, res: Response) {
         const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : 10;
         const page = req.query.page ? parseInt(req.query.page as string, 10) : 0;
-        const transactions = await transactionService.listByCustomerId(res.locals.jwt.id, limit, page);
+        const transactions = await transactionService.listByAccountNumber(req.body.fromAccount, limit, page);
 
         res.status(STATUS.OK).send({
             transactions,

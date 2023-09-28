@@ -19,7 +19,7 @@ export class TransactionRoutes extends CommonRoutesConfig {
         this.app
             .route('/transaction')
             .all(jwtMiddleware.validateJwt)
-            .get(transactionController.list)
+            .get(accountMiddleware.extractAccountNumber, transactionController.list)
             .post(
                 body('amount').isNumeric(),
                 body('toAccount').isString(),
@@ -28,7 +28,11 @@ export class TransactionRoutes extends CommonRoutesConfig {
                 body('to').isString(),
                 BodyValidationMiddleware.verifyBodyFieldsErrors,
                 accountMiddleware.checkRecipientAccountExists,
+                accountMiddleware.cantTransferToSameAccount,
                 accountMiddleware.extractAccountNumber,
+                accountMiddleware.checkAccountHasEnoughFunds,
+                accountMiddleware.changeAccountsBalance,
+                transactionController.create,
             );
 
         this.app.param('transactionId', transactionMiddleware.extractTransactionId);

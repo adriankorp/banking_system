@@ -45,7 +45,7 @@ class SequelizeService {
             await this.sequelize.sync({
                 alter: true,
                 logging: false,
-                force: true,
+                //force: true,
             });
             log('MySQL connected');
             console.log('MySQL connected');

@@ -20,6 +20,10 @@ class TransactionService {
     async listByCustomerId(customerId: string, limit: number, page: number) {
         return transactionDao.getAllByCustomerId(customerId, limit, page);
     }
+
+    async listByAccountNumber(accountNumber: string, limit: number, page: number) {
+        return transactionDao.getAllByAccountNumber(accountNumber, limit, page);
+    }
 }
 
 export default new TransactionService();
