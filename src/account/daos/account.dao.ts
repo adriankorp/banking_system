@@ -39,14 +39,6 @@ class AccountDao {
         });
     }
 
-    async getAll(limit = 25, page = 0): Promise<AccountAttributes[]> {
-        const offset = page * limit;
-        return this.Account.findAll({
-            limit,
-            offset,
-        });
-    }
-
     async updateByCustomerId(customerId: string, accountFields: PatchAccountDto): Promise<AccountAttributes | null> {
         const account = await this.Account.update(accountFields, {
             where: { customerId },
@@ -59,30 +51,6 @@ class AccountDao {
         const updatedAccount = await this.getById(customerId);
 
         return updatedAccount;
-    }
-
-    async updateById(
-        accountId: string,
-        accountFields: PatchAccountDto | PutAccountDto,
-    ): Promise<AccountAttributes | null> {
-        const account = await this.Account.update(accountFields, {
-            where: { id: accountId },
-        });
-
-        if (!account[0]) {
-            return null;
-        }
-
-        const updatedAccount = await this.getById(accountId);
-
-        return updatedAccount;
-    }
-    async deleteById(accountId: string): Promise<boolean> {
-        const deletedAccount = await this.Account.destroy({
-            where: { id: accountId },
-        });
-
-        return !!deletedAccount;
     }
 }
 
