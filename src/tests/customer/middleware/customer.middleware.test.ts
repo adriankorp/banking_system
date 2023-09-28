@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { expect } from 'chai';
-import { delay } from '../../../common/helpers/helpers.functions';
+import { delay } from '../../../common/utils/utils';
 import customerMiddleware from '../../../customer/middleware/customer.middleware';
 import customerService from '../../../customer/services/customer.service';
 import { CustomerAttributes } from '../../../customer/models/customer.model';

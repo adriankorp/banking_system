@@ -5,7 +5,7 @@ import { PutCustomerDto } from '../../../customer/dtos/put.customer.dto';
 import { PatchCustomerDto } from '../../../customer/dtos/patch.customer.dto';
 import { CustomerAttributes } from '../../../customer/models/customer.model';
 import { CreateCustomerDto } from '../../../customer/dtos/create.customer.dto';
-import { delay } from '../../../common/helpers/helpers.functions';
+import { delay } from '../../../common/utils/utils';
 
 (async function () {
     await delay(3);

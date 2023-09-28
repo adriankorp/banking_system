@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import { expect } from 'chai';
 import app from '../../../app';
-import { delay } from '../../common/helpers/helpers.functions';
+import { delay } from '../../common/utils/utils';
 
 const request = supertest(app);
 
@@ -47,6 +47,9 @@ const request = supertest(app);
             expect(customer).to.have.property('lastName');
             expect(customer).to.have.property('address');
             expect(customer).to.have.property('phone');
+            expect(customer).to.have.property('account');
+            expect(customer.account).to.have.property('accountNumber');
+            expect(customer.account).to.have.property('balance');
         });
 
         it('should update patch the customer', async () => {
