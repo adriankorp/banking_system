@@ -6,7 +6,7 @@ class BodyValidationMiddleware {
     verifyBodyFieldsErrors(req: Request, res: Response, next: NextFunction) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(STATUS.BAD_REQUEST).send({ errors: [errors] });
+            return res.status(STATUS.BAD_REQUEST).send(errors);
         }
         next();
     }
