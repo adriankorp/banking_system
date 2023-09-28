@@ -14,6 +14,7 @@ import { STATUS } from './src/common/constants/response.constants';
 import { CommonRoutesConfig } from './src/common/common.routes.config';
 import { CustomersRoutes } from './src/customer/customer.routes.config';
 import errorHandlerMiddleware from './src/common/middleware/error.handler.middleware';
+import { AuthRoutes } from './src/authorization/authorization.routes.config';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -49,6 +50,7 @@ if (!process.env.DEBUG) {
 app.use(expressWinston.logger(loggerOptions));
 
 routes.push(new CustomersRoutes(app));
+routes.push(new AuthRoutes(app));
 
 const runningMessage = `Server is listening on port ${API_PORT}`;
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
