@@ -17,7 +17,7 @@ class TransactionDao {
         return transaction;
     }
 
-    async getByIdAndCustomerId(transactionId: string, customerId: string): Promise<TransactionAttributes | null> {
+    async getByIdAndCustomerId(transactionId: number, customerId: string): Promise<TransactionAttributes | null> {
         return this.Transaction.findOne({
             where: { id: transactionId, customerId },
         });

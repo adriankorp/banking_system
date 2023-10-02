@@ -13,7 +13,7 @@ class TransactionService {
         return transactionDao.add(resource);
     }
 
-    async readByIdAndCustomerId(transactionId: string, customerId: string) {
+    async readByIdAndCustomerId(transactionId: number, customerId: string) {
         return transactionDao.getByIdAndCustomerId(transactionId, customerId);
     }
 
