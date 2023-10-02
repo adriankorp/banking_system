@@ -9,6 +9,12 @@ This is the backend system for a banking application.
 To install the required dependencies:
 npm install
 
+### Running Docker
+To run docker: docker-compose up 
+
+To stop docker: 
+docker-compose down
+
 ### Running the App
 To run the app:
 npm start
@@ -65,6 +71,6 @@ MYSQL_DB=
 
 JWT_SECRET=
 
-Ensure your `.env` file is added to `.gitignore` to prevent accidental pushes.
+
 
 

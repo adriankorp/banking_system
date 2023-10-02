@@ -10,7 +10,7 @@
     "debug": "set DEBUG=* && npm start",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --ext .ts . --fix",
-    "test": "mocha --delay -r ts-node/register 'src/tests/**/**/*.test.ts' --unhandled-rejections=strict",
+    "test": "mocha --delay -r ts-node/register 'test/**/*.test.ts' --unhandled-rejections=strict",
     "test-debug": "set DEBUG=* && npm test",
     "test-debug:path": "set DEBUG=* && npm run test:path",
     "test:path": "mocha -r ts-node/register --unhandled-rejections=strict ",
