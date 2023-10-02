@@ -21,7 +21,7 @@ class AccountDao {
         return account;
     }
 
-    async getById(accountId: string): Promise<AccountAttributes | null> {
+    async getById(accountId: number): Promise<AccountAttributes | null> {
         return this.Account.findOne({
             where: { id: accountId },
         });
@@ -48,7 +48,7 @@ class AccountDao {
             return null;
         }
 
-        const updatedAccount = await this.getById(customerId);
+        const updatedAccount = await this.getByCustomerId(customerId);
 
         return updatedAccount;
     }
